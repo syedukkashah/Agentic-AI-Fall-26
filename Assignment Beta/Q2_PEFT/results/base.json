@@ -1,0 +1,14 @@
+{
+ "run": "base",
+ "method": "base",
+ "rank": 0,
+ "train_minutes": 0.0,
+ "peak_mem_GB": 3.087429632,
+ "trainable_params": 0,
+ "trainable_%": 0.0,
+ "json_valid": 200,
+ "json_valid_%": 100.0,
+ "tool_acc_%": 100.0,
+ "full_match_%": 95.0,
+ "eval_tok_per_s": 101.55493484945528
+}
