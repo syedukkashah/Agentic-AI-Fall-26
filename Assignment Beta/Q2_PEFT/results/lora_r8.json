@@ -1,0 +1,15 @@
+{
+ "run": "lora_r8",
+ "method": "lora",
+ "rank": 8,
+ "train_minutes": 7.048096517721812,
+ "peak_mem_GB": 5.19576832,
+ "final_train_loss": 0.008396628947384589,
+ "trainable_params": 2179072,
+ "trainable_%": 0.1409587513492263,
+ "json_valid": 200,
+ "json_valid_%": 100.0,
+ "tool_acc_%": 100.0,
+ "full_match_%": 95.5,
+ "eval_tok_per_s": 97.78792881285733
+}

@@ -1,0 +1,8 @@
+{
+ "run": "qlora_r8 merged into fp16 base",
+ "json_valid": 200,
+ "json_valid_%": 100.0,
+ "tool_acc_%": 100.0,
+ "full_match_%": 95.0,
+ "eval_tok_per_s": 138.20883916230412
+}

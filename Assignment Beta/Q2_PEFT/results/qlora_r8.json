@@ -1,0 +1,15 @@
+{
+ "run": "qlora_r8",
+ "method": "qlora",
+ "rank": 8,
+ "train_minutes": 9.968808249632518,
+ "peak_mem_GB": 4.28751872,
+ "final_train_loss": 0.009142813742556403,
+ "trainable_params": 2179072,
+ "trainable_%": 0.1409587513492263,
+ "json_valid": 200,
+ "json_valid_%": 100.0,
+ "tool_acc_%": 100.0,
+ "full_match_%": 96.5,
+ "eval_tok_per_s": 71.13141230886497
+}

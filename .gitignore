@@ -1,0 +1,5 @@
+# Trained LoRA/QLoRA/DoRA/AdaLoRA adapter weights (~90 MB); results JSONs + predictions document every run
+Assignment Beta/Q2_PEFT/results/*_adapter/
+
+# Python caches
+__pycache__/
