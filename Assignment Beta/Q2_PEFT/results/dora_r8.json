@@ -1,0 +1,15 @@
+{
+ "run": "dora_r8",
+ "method": "dora",
+ "rank": 8,
+ "train_minutes": 10.049064135551452,
+ "peak_mem_GB": 5.197510144,
+ "final_train_loss": 0.00834587618576742,
+ "trainable_params": 2279424,
+ "trainable_%": 0.1474407016481764,
+ "json_valid": 200,
+ "json_valid_%": 100.0,
+ "tool_acc_%": 100.0,
+ "full_match_%": 95.5,
+ "eval_tok_per_s": 64.97867084825664
+}

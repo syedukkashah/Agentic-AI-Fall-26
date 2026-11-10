@@ -1,0 +1,15 @@
+{
+ "run": "adalora_r8",
+ "method": "adalora",
+ "rank": 8,
+ "train_minutes": 9.155014522870381,
+ "peak_mem_GB": 5.2662656,
+ "final_train_loss": 3.58995284443408,
+ "trainable_params": 3270064,
+ "trainable_%": 0.21138313144221765,
+ "json_valid": 200,
+ "json_valid_%": 100.0,
+ "tool_acc_%": 100.0,
+ "full_match_%": 95.0,
+ "eval_tok_per_s": 93.11188857525777
+}
