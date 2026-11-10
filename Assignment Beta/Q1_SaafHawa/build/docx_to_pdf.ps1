@@ -1,5 +1,5 @@
 # Convert .docx files to PDF with Microsoft Word.
-# Usage (from Q1_SaafHawa):  powershell -File build/docx_to_pdf.ps1 Assignment_Beta_Q1_Report_23K-0055.docx [more.docx ...]
+# Usage (from Q1_SaafHawa):  powershell -File build/docx_to_pdf.ps1 q1_report.docx [more.docx ...]
 $word = New-Object -ComObject Word.Application
 $word.Visible = $false
 try {

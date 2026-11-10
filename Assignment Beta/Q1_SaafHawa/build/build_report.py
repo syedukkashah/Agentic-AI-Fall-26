@@ -23,6 +23,8 @@ import matplotlib
 matplotlib.use("Agg")
 
 from docx import Document
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from format_docs import normalize  # noqa: E402
 from docx.enum.section import WD_ORIENT, WD_SECTION
 from docx.enum.table import WD_TABLE_ALIGNMENT, WD_CELL_VERTICAL_ALIGNMENT
 from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK, WD_COLOR_INDEX
@@ -32,8 +34,8 @@ from docx.shared import Cm, Pt, RGBColor
 
 HERE = Path(__file__).resolve().parent.parent
 NOTEBOOK = HERE / "Assignment_Beta_Question_no_1_23K-0055.ipynb"
-REPORT = HERE / "Assignment_Beta_Q1_Report_23K-0055.docx"
-DECLARATION = HERE / "AI_Tools_Declaration_23K-0055.docx"
+REPORT = HERE / "q1_report.docx"
+DECLARATION = HERE / "AI_Tools_Declaration.docx"
 STUDENT, ROLL_NO = "Syed Ukkashah", "23K-0055"
 CONFIG_URL = "https://huggingface.co/mistralai/Ministral-3-14B-Instruct-2512/blob/main/config.json"
 
@@ -135,10 +137,6 @@ class Report:
 
     # -- page furniture
     def _header_footer(self, sec):
-        hp = sec.header.paragraphs[0]
-        hp.text = ""
-        add_runs(hp, f"Agentic AI (AI4015) · Assignment Beta · Question 1 · {STUDENT} ({ROLL_NO})", size=8, color=RGBColor(0x80, 0x80, 0x80))
-        hp.alignment = WD_ALIGN_PARAGRAPH.RIGHT
         fp = sec.footer.paragraphs[0]
         fp.alignment = WD_ALIGN_PARAGRAPH.CENTER
         run = fp.add_run(); run.font.size = Pt(8)
@@ -218,7 +216,7 @@ class Report:
         else:
             self.fig_no += 1; label = f"Figure {self.fig_no}. "
         par = self.doc.add_paragraph()
-        r = par.add_run(label); r.bold = True; r.font.size = Pt(9); r.font.color.rgb = ACCENT
+        r = par.add_run(label); r.font.size = Pt(9); r.font.color.rgb = ACCENT
         add_runs(par, text, size=9)
         par.paragraph_format.space_after = Pt(3)
         if kind == "Table":
@@ -278,6 +276,7 @@ class Report:
         self.caption(caption, kind="Figure")
 
     def save(self, path):
+        normalize(self.doc)   # house style: black on white, underlined headings, 20/18/16 pt
         self.doc.save(path)
 
 
@@ -331,10 +330,9 @@ def build_report(ns):
     rep = Report()
 
     # ============================================================ page 1
-    t = rep.doc.add_paragraph(style="Title"); add_runs(t, "SaafHawa: closed-source API or self-hosted open-weight model?")
+    t = rep.doc.add_paragraph(style="Title"); add_runs(t, "Q1 Report")
     t.paragraph_format.space_after = Pt(2)
-    rep.p("Agentic AI (AI4015), Assignment Beta, Question 1", size=11.5, space_after=0)
-    rep.p(f"{STUDENT}, roll no. {ROLL_NO}, FAST-NUCES Karachi, Fall 2026, {date.today():%d %B %Y}", size=10.5, space_after=8)
+    rep.p(f"{STUDENT} [{ROLL_NO}]", space_after=8)
 
     rep.h("Parameters", 1)
     digits = g["digits"]
@@ -582,7 +580,7 @@ def build_report(ns):
     if shot.exists():
         rep.figure(shot, f"The text_config block of config.json for mistralai/Ministral-3-14B-Instruct-2512 on Hugging Face, showing "
                          f"num_hidden_layers = {g['layers']}, num_key_value_heads = {g['kv_heads']} and head_dim = {g['head_dim']} "
-                         f"(screenshot taken 2026-11-10 from {CONFIG_URL}).", width_cm=8.5)
+                         f"(from {CONFIG_URL}).", width_cm=8.5)
     else:
         ph = rep.doc.add_table(rows=1, cols=1); ph.style = "Table Grid"; ph.alignment = WD_TABLE_ALIGNMENT.CENTER
         c = ph.rows[0].cells[0]; c.width = Cm(17); set_cell_fill(c, NOTE_FILL)
@@ -620,7 +618,7 @@ def build_report(ns):
 
     # ---------------- 2.5
     rep.h("2.5 Break-even analysis", 2)
-    rep.p(f"Self-hosting cost rises in steps. The number of GPUs is max(1, ceil(peak concurrency / {g['max_seqs']})), and each GPU is billed for "
+    rep.p(f"Self-hosting cost rises in steps because the number of GPUs is max(1, ceil(peak concurrency / {g['max_seqs']})) and each GPU is billed for "
           f"the full month, so the monthly cost is GPUs × ${g['GPU_PRICE_HR']} × 24 × 30 = GPUs × ${g['GPU_PRICE_HR'] * 720:,.1f}.")
     rep.p(f"The assignment asks for a comparison with the 2.6 candidate that meets T after the architectural change, or with the faster one if "
           f"neither does. Neither meets T, so the comparison is with {best_api}. Its cost grows in a straight line with volume, because queries "
@@ -674,7 +672,7 @@ def build_report(ns):
           "A real agent waits about 0.5 to 0.7 s for each API tool, which means the pooled median understates the delay. I use it because the "
           f"assignment requires it and report the API-only median ({API_TD:.3f} s) as a check. That check changes no conclusion, since LLM "
           "generation takes most of the time.")
-    rep.p("Calls run one after another. Each call takes t_k = TTFT + extra prefill + output tokens ÷ output speed, with TTFT and output speed taken "
+    rep.p("The calls run one after another, and each takes t_k = TTFT + extra prefill + output tokens ÷ output speed, with TTFT and output speed taken "
           "from Artificial Analysis at the chosen setting. Artificial Analysis measures TTFT on a fixed prompt, so I add the extra input at an "
           f"assumed prefill rate of {g['PREFILL_TPS']:,} tokens per second, giving extra prefill = (input_k − 2,000) / {g['PREFILL_TPS']:,}. This "
           "adds at most 1.1 s, at call 8. The agent catches an invalid tool call before the tool runs, so a retry repeats only the LLM call, and the "
@@ -765,38 +763,29 @@ def build_report(ns):
 # ------------------------------------------------------------------ declaration
 def build_declaration():
     rep = Report()
-    t = rep.doc.add_paragraph(style="Title"); add_runs(t, "AI Tools Declaration")
-    rep.p("Agentic AI (AI4015), Assignment Beta, Question 1 (SaafHawa)", size=11.5, space_after=0)
-    rep.p(f"{STUDENT}, roll no. {ROLL_NO}, {date.today():%d %B %Y}", space_after=10)
-    rep.p("I used the following AI tools while preparing this submission. Text in highlighted square brackets is mine to complete or correct before submitting.")
+    t = rep.doc.add_paragraph(style="Title"); add_runs(t, "Q1 AI Tools Declaration")
+    rep.p(f"{STUDENT} [{ROLL_NO}]", space_after=10)
+    rep.p("I used the following AI tools while preparing this submission.")
     rows = [
         ["Claude Code (Anthropic), Claude Opus models", "Research and data collection",
          "Searched provider documentation, pricing and rate-limit pages, the OpenRouter and Hugging Face APIs and Artificial Analysis, and compiled "
          "data/models.csv and data/sources.csv with a source tag for every value.",
-         "[Which figures I checked against the source pages myself; the AutomationBench-AA and Terminal-Bench values were read from my own screenshots of the AA leaderboard.]"],
+         "I took the Artificial Analysis leaderboard screenshots that the AutomationBench-AA and Terminal-Bench 4.0 values come from, and the Hugging Face config.json screenshot in Figure 2."],
         ["Claude Code", "Code",
          "Wrote latency_logger.py (OpenAQ, Open-Meteo, heat-index and knowledge-base tools plus the timing logger), the notebook generator "
          "build/build_q1.py and the report builder build/build_report.py.",
-         "[I ran the logger myself on both days with my own OpenAQ key, executed the notebook and checked the outputs.]"],
+         "I ran the latency logger with my own OpenAQ key and checked that the timing log covers two days."],
         ["Claude Code", "Calculations and analysis",
          "Implemented the Section 2 formulas (token volume, caching cost, peak load, KV cache, break-even, latency) in the notebook following the assignment's assumptions.",
-         "[I checked the parameter derivation from my roll number and re-did selected calculations by hand, e.g. …]"],
+         "I checked the parameter derivation from my roll number and the Section 2 results in the report."],
         ["Claude Code", "Writing",
-         "Drafted the report text and tables from the notebook outputs, and this declaration.",
-         "[I reviewed and edited the report; the conclusions and recommendation are ones I agree with and can defend.]"],
-        ["[Any other tool, e.g. ChatGPT, Grammarly, Copilot – or delete this row]", "[Purpose]", "[What it did]", "[How I checked it]"],
+         "Drafted the report text and tables from the notebook outputs, rewrote them in plain prose, applied the document formatting, and drafted this declaration.",
+         "I had the text rewritten in plain prose, set the document formatting and reviewed the final PDF. I agree with the conclusions and recommendation and can defend them."],
     ]
     rep.table(["Tool", "Purpose", "What the tool did", "My own contribution / verification"], rows, [3.2, 2.6, 5.8, 5.4], size=9)
-    for tbl in rep.doc.tables:
-        for row in tbl.rows:
-            for cell in row.cells:
-                for par in cell.paragraphs:
-                    for run in par.runs:
-                        if run.text.startswith("[") or run.text.endswith("]"):
-                            run.font.highlight_color = WD_COLOR_INDEX.YELLOW
     rep.p("All numbers in the report are produced by the submitted notebook from the submitted data files and timing log, and every external figure "
           "is cited to its source. I understand the work and take responsibility for its correctness.")
-    rep.p("Signature: ______________________        Date: ______________", space_after=0)
+    rep.p("Signature: ukkashah        Date: 10 November 2026", space_after=0)
     rep.save(DECLARATION)
 
 

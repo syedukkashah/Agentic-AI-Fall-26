@@ -4,7 +4,7 @@ from nbtools import build
 cells = [
 ("md", r"""
 # Assignment Beta – Question 1: SaafHawa — closed API or self-hosted open-weight model?
-**Syed Ukkashah – 23K-0055**
+**Syed Ukkashah [23K-0055]**
 
 Folder layout (paths are relative to this notebook):
 * `data/models.csv`: Section 1 comparison table. Every value has a source ID in its `*_src` column.
