@@ -1,0 +1,34 @@
+id,source,url,accessed,notes
+S1,OpenAI API pricing (Standard tier),https://developers.openai.com/api/docs/pricing,2026-11-09,platform.openai.com/docs/pricing redirects here; GPT-6 cache-write prices in the same table
+S2,OpenAI prompt caching guide,https://developers.openai.com/api/docs/guides/prompt-caching,2026-11-09,"min 1,024 tokens for GPT-5.6+; default TTL 30m; write 1.25x"
+S3,OpenAI model page: gpt-6-luna,https://developers.openai.com/api/docs/models/gpt-6-luna,2026-11-09,"context, max output, reasoning efforts, features, Build-tier limits"
+S4,OpenAI model page: gpt-6.1-terra,https://developers.openai.com/api/docs/models/gpt-6.1-terra,2026-11-09,"context, max output, reasoning efforts, features, Build-tier limits"
+S5,Anthropic pricing,https://platform.claude.com/docs/en/about-claude/pricing,2026-11-09,"base, 5m/1h cache write, cache hit, output per MTok"
+S6,Anthropic models overview,https://platform.claude.com/docs/en/about-claude/models/overview,2026-11-09,"context 1M, max output 128K, adaptive thinking, effort levels"
+S7,Anthropic prompt caching,https://platform.claude.com/docs/en/build-with-claude/prompt-caching,2026-11-09,min cacheable prompt per model; 5-minute default TTL
+S8,Anthropic rate limits,https://platform.claude.com/docs/en/api/rate-limits,2026-11-09,Start tier RPM/ITPM/OTPM; cache reads do not count toward ITPM
+S9,Anthropic structured outputs,https://platform.claude.com/docs/en/build-with-claude/structured-outputs,2026-11-09,supportedModels list
+S10,Google Gemini API pricing,https://aistudio.google.com/docs/pricing,2026-11-09,ai.google.dev/gemini-api/docs/pricing redirects here; Standard tier
+S11,Google Gemini context caching,https://aistudio.google.com/docs/caching,2026-11-09,"implicit caching min 4,096 tokens for Gemini 3.x models listed"
+S12,Google Gemini rate limits,https://aistudio.google.com/docs/rate-limits,2026-11-09,per-model Tier 1 RPM/TPM only visible inside a signed-in AI Studio account
+S13,Google Gemini thinking,https://aistudio.google.com/docs/thinking,2026-11-09,thinking levels per model
+S14,xAI models and pricing,https://docs.x.ai/docs/models,2026-11-09,Text API pricing table
+S15,xAI consumption and rate limits,https://docs.x.ai/docs/key-information/consumption-and-rate-limits,2026-11-09,"RPS and TPM by tier; new account = Tier 0"
+S16,Mistral API pricing,https://docs.mistral.ai/inference/pricing,2026-11-09,input / cached / output per M tokens
+S17,Mistral prompt caching,https://docs.mistral.ai/inference/conversations/advanced/prompt-caching,2026-11-09,"cached = 10% of input; prompts < 64 tokens never hit cache"
+S18,OpenRouter models API,https://openrouter.ai/api/v1/models,2026-11-09,snapshot saved as data/snapshots/openrouter_models.json
+S19,OpenRouter per-model endpoints API,https://openrouter.ai/api/v1/models/{model-id}/endpoints,2026-11-09,"per-provider price, context, max output, quantization, supported_parameters; snapshot saved as data/snapshots/openrouter_endpoints.json"
+S20,OpenRouter API limits,https://openrouter.ai/docs/api-reference/limits,2026-11-09,paid models have no platform-level request cap; upstream provider limits apply
+S21,Artificial Analysis LLM leaderboard,https://artificialanalysis.ai/leaderboards/models,2026-11-09,"Intelligence Index v5.0.1 and time to first answer token per variant"
+S22,Artificial Analysis model pages,https://artificialanalysis.ai/models/{slug},2026-11-09,output speed (tok/s) per model; slugs listed in models.csv
+S23,Artificial Analysis IFBench,https://artificialanalysis.ai/evaluations/ifbench,2026-11-09,Grok 4.20 0309 (Reasoning) IFBench 82.9%
+S24,Hugging Face: mistralai/Ministral-3-14B-Instruct-2512,https://huggingface.co/mistralai/Ministral-3-14B-Instruct-2512,2026-11-09,model card + config.json (40 layers / 8 KV heads / head_dim 128)
+S25,Hugging Face: mistralai/Mistral-Small-4-119B-2603,https://huggingface.co/mistralai/Mistral-Small-4-119B-2603,2026-11-09,"119B total, 6.5B active, Apache 2.0"
+S26,Hugging Face: Qwen/Qwen3.8-27B,https://huggingface.co/Qwen/Qwen3.8-27B,2026-11-09,"27B, Apache 2.0, benchmark table (Terminal Bench 2.1, IFBench, GPQA)"
+S27,Hugging Face: google/gemma-4-31B-it,https://huggingface.co/google/gemma-4-31B-it,2026-11-09,"30.7B, Apache 2.0, Tau2 76.9%, GPQA 84.3%"
+S28,Hugging Face: openai/gpt-oss-120b,https://huggingface.co/openai/gpt-oss-120b,2026-11-09,"117B total, 5.1B active, Apache 2.0"
+S29,Hugging Face: deepseek-ai/DeepSeek-V4.1-Flash-1017,https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017,2026-11-09,"MIT; safetensors total 763B; active params not stated"
+S30,Hugging Face: zai-org/GLM-5.3-Flash,https://huggingface.co/zai-org/GLM-5.3-Flash,2026-11-09,"320B total, 18B active, MIT"
+S31,Hugging Face model API (safetensors parameter count),https://huggingface.co/api/models/{repo-id},2026-11-09,snapshot saved as data/snapshots/hf_info.json
+S32,RunPod GPU pricing (Pods; page updated 2026-11-04),https://www.runpod.io/pricing,2026-11-09,"L40S 48 GB: Secure Cloud $1.09/hr, Community $0.79/hr; H100 PCIe 80 GB: Secure $2.89/hr"
+S33,Artificial Analysis leaderboard - Intelligence Index expanded into component evaluations (AutomationBench-AA; Terminal-Bench 4.0),https://artificialanalysis.ai/leaderboards/models,2026-11-09,values read from browser screenshots taken by the student on the access date

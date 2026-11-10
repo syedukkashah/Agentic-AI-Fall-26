@@ -1,0 +1,72 @@
+[
+  {
+    "id": "who-pm25",
+    "topic": "air quality",
+    "keywords": ["pm2.5", "pm25", "smog", "haze", "pollution", "air", "dhuan", "aqi"],
+    "advice": "The WHO 2021 air quality guideline for PM2.5 is a 24-hour mean of 15 ug/m3. Above this level, sensitive groups should reduce prolonged outdoor exertion.",
+    "source": "https://www.who.int/publications/i/item/9789240034228"
+  },
+  {
+    "id": "who-pm10",
+    "topic": "air quality",
+    "keywords": ["pm10", "dust", "pollution", "air", "gard"],
+    "advice": "The WHO 2021 air quality guideline for PM10 is a 24-hour mean of 45 ug/m3. On dusty days, keep windows closed and avoid roadside exercise.",
+    "source": "https://www.who.int/publications/i/item/9789240034228"
+  },
+  {
+    "id": "asthma",
+    "topic": "air quality",
+    "keywords": ["asthma", "dama", "saans", "breathing", "inhaler", "lungs", "copd"],
+    "advice": "People with asthma or COPD should carry their reliever inhaler, stay indoors when PM2.5 is high, and seek care if breathlessness worsens.",
+    "source": "https://www.who.int/news-room/fact-sheets/detail/ambient-(outdoor)-air-quality-and-health"
+  },
+  {
+    "id": "exercise-pollution",
+    "topic": "air quality",
+    "keywords": ["jog", "jogging", "run", "running", "walk", "exercise", "sea", "beach", "evening", "morning"],
+    "advice": "Exercise outdoors when pollution and heat are lowest. Move the workout indoors or shorten it when PM2.5 is well above the WHO guideline.",
+    "source": "https://www.who.int/news-room/fact-sheets/detail/ambient-(outdoor)-air-quality-and-health"
+  },
+  {
+    "id": "heat-hydration",
+    "topic": "heat",
+    "keywords": ["heat", "garmi", "hot", "temperature", "water", "paani", "hydration", "heatwave"],
+    "advice": "During a heatwave, drink water regularly even if you are not thirsty, avoid sugary or caffeinated drinks, and wear light, loose, light-coloured clothing.",
+    "source": "https://www.who.int/news-room/fact-sheets/detail/climate-change-heat-and-health"
+  },
+  {
+    "id": "heat-midday",
+    "topic": "heat",
+    "keywords": ["noon", "dopahar", "12", "bajy", "midday", "afternoon", "sun", "dhoop", "school"],
+    "advice": "Avoid going out in the hottest hours (roughly 12:00 to 16:00). If travel is unavoidable, use shade, an umbrella or cap, and carry water.",
+    "source": "https://www.ndma.gov.pk/"
+  },
+  {
+    "id": "heat-children",
+    "topic": "heat",
+    "keywords": ["child", "children", "bachon", "bachay", "baby", "school", "kids"],
+    "advice": "Children overheat quickly. Never leave them in parked vehicles, keep them hydrated, and pick them up from school in shade where possible.",
+    "source": "https://www.who.int/news-room/fact-sheets/detail/climate-change-heat-and-health"
+  },
+  {
+    "id": "heat-elderly",
+    "topic": "heat",
+    "keywords": ["elderly", "old", "buzurg", "grandparents", "senior"],
+    "advice": "Older people and those with heart disease are at higher risk. Check on them twice a day during a heatwave and keep their room cool and ventilated.",
+    "source": "https://www.who.int/news-room/fact-sheets/detail/climate-change-heat-and-health"
+  },
+  {
+    "id": "heat-labourers",
+    "topic": "heat",
+    "keywords": ["labour", "labourer", "worker", "mazdoor", "construction", "outdoor", "rickshaw", "delivery"],
+    "advice": "Outdoor workers should take frequent breaks in the shade, drink water every 15 to 20 minutes, and shift heavy work to early morning or evening.",
+    "source": "https://www.ndma.gov.pk/"
+  },
+  {
+    "id": "heatstroke-signs",
+    "topic": "heat",
+    "keywords": ["heatstroke", "lu", "dizzy", "chakkar", "fainting", "vomiting", "headache", "emergency"],
+    "advice": "Signs of heatstroke include confusion, a very high body temperature and hot dry skin. Move the person to shade, cool them with water and call emergency services (1122).",
+    "source": "https://www.who.int/news-room/fact-sheets/detail/climate-change-heat-and-health"
+  }
+]
